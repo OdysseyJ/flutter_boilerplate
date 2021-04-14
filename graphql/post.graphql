@@ -1,0 +1,15 @@
+query getPosts {
+    posts {
+        count
+        currentPage
+        totalPages
+        {
+            id
+            title
+            author {
+                id
+                name
+            }
+        }
+    }
+}
