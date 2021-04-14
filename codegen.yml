@@ -1,0 +1,6 @@
+generates:
+  ./graphql/schema.graphql:
+    schema:
+      - 'https://api.graphqlplaceholder.com/'
+    plugins:
+      - schema-ast
