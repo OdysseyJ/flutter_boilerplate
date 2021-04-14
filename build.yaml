@@ -3,15 +3,15 @@ targets:
     sources:
       - lib/**
       - graphql/**
-      - schema.graphql
+      - graphql/schema.graphql
     builders:
       artemis:
         options:
           naming_scheme: simple
           generate_helpers: true
           schema_mapping:
-            - schema: schema.graphql
-              queries_glob: graphql/*.graphql
+            - schema: graphql/schema.graphql
+              queries_glob: graphql/**/*.graphql
               output: lib/graphql/graphql_api.dart
           custom_parser_import: "package:bookbook/lib/utils/coercers.dart"
           scalar_mapping:
