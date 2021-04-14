@@ -9,11 +9,6 @@
   dependencies:
     "tslib" "~2.0.1"
 
-"@arkweid/lefthook@0.7.2":
-  "integrity" "sha512-r34fl/qiny7564aL+MLmkVbUMjr39vSqSGvUoA7e3FwpvD/ubJkxdDFCDJECvOYiYMXwwaqJc6txXtfnvDY3YQ=="
-  "resolved" "https://registry.npmjs.org/@arkweid/lefthook/-/lefthook-0.7.2.tgz"
-  "version" "0.7.2"
-
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.12.13":
   "integrity" "sha512-HV1Cm0Q3ZrpCR93tkWOYiuYIgLxZXZFVG2VgK+MBWjUqZTundupbfx2aXarXuw5Ko5aMcjtJgbSs4vUGBS5v6g=="
   "resolved" "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.12.13.tgz"
@@ -1810,6 +1805,11 @@
   dependencies:
     "agent-base" "6"
     "debug" "4"
+
+"husky@6.0.0":
+  "integrity" "sha512-SQS2gDTB7tBN486QSoKPKQItZw97BMOd+Kdb6ghfpBc0yXyzrddI0oDV5MkDAbuB4X2mO3/nj60TRMcYxwzZeQ=="
+  "resolved" "https://registry.npmjs.org/husky/-/husky-6.0.0.tgz"
+  "version" "6.0.0"
 
 "iconv-lite@^0.4.24":
   "integrity" "sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA=="

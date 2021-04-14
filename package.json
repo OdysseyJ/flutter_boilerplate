@@ -5,14 +5,15 @@
   "author": "정성운 <ggogumalove@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@arkweid/lefthook": "0.7.2",
     "@graphql-codegen/cli": "1.21.3",
     "@graphql-codegen/schema-ast": "1.18.1",
     "cz-conventional-changelog": "3.3.0",
-    "graphql": "15.5.0"
+    "graphql": "15.5.0",
+    "husky": "6.0.0"
   },
   "scripts": {
-    "generate": "graphql-codegen --config codegen.yml"
+    "generate": "graphql-codegen --config codegen.yml",
+    "prepare": "husky install"
   },
   "config": {
     "commitizen": {
