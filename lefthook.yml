@@ -1,13 +1,18 @@
 pre-push:
-  parallel: true
   commands:
     tests:
       run: flutter test
-    linter:
-      run: flutter analyze
 
 pre-commit:
+  parallel: true
   commands:
+    linter:
+      run: flutter analyze
     pretty:
       glob: '*.dart'
       run: flutter format {staged_files} && git add {staged_files}
+
+prepare-commit-msg:
+  commands:
+    cz:
+      run: exec < /dev/tty && git cz --hook || true
