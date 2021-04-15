@@ -3,12 +3,15 @@ query getPosts {
         count
         currentPage
         totalPages
-        {
+        data{
             id
             title
             author {
                 id
                 name
+            }
+            comments{
+                id
             }
         }
     }
