@@ -1,0 +1,32 @@
+fragment User_Info on User {
+  id
+  name
+  username
+  email
+  phone
+  website
+}
+
+fragment Post_Info on Post {
+  id
+  title
+  body
+}
+
+fragment Post on Post {
+  ...Post_Info
+  author{
+      ...User_Info
+  }
+}
+
+query getPosts {
+    posts {
+        count
+        currentPage
+        totalPages
+        data{
+            ...Post
+        }
+    }
+}

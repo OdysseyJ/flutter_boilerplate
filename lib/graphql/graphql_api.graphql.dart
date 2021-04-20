@@ -1,63 +1,55 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
+import 'package:meta/meta.dart';
 import 'package:artemis/artemis.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:equatable/equatable.dart';
 import 'package:gql/ast.dart';
 part 'graphql_api.graphql.g.dart';
 
-@JsonSerializable(explicitToJson: true)
-class GetPosts$Query$PostWithPagination$Post$User with EquatableMixin {
-  GetPosts$Query$PostWithPagination$Post$User();
-
-  factory GetPosts$Query$PostWithPagination$Post$User.fromJson(
-          Map<String, dynamic> json) =>
-      _$GetPosts$Query$PostWithPagination$Post$UserFromJson(json);
-
+mixin UserInfoMixin {
   String id;
-
   String name;
-
-  @override
-  List<Object> get props => [id, name];
-  Map<String, dynamic> toJson() =>
-      _$GetPosts$Query$PostWithPagination$Post$UserToJson(this);
+  String username;
+  String email;
+  String phone;
+  String website;
 }
-
-@JsonSerializable(explicitToJson: true)
-class GetPosts$Query$PostWithPagination$Post$Comment with EquatableMixin {
-  GetPosts$Query$PostWithPagination$Post$Comment();
-
-  factory GetPosts$Query$PostWithPagination$Post$Comment.fromJson(
-          Map<String, dynamic> json) =>
-      _$GetPosts$Query$PostWithPagination$Post$CommentFromJson(json);
-
+mixin PostInfoMixin {
   String id;
-
-  @override
-  List<Object> get props => [id];
-  Map<String, dynamic> toJson() =>
-      _$GetPosts$Query$PostWithPagination$Post$CommentToJson(this);
+  String title;
+  String body;
+}
+mixin PostMixin {
+  PostMixin$User author;
+  String id;
+  String title;
+  String body;
 }
 
 @JsonSerializable(explicitToJson: true)
-class GetPosts$Query$PostWithPagination$Post with EquatableMixin {
+class PostMixin$User with EquatableMixin, UserInfoMixin {
+  PostMixin$User();
+
+  factory PostMixin$User.fromJson(Map<String, dynamic> json) =>
+      _$PostMixin$UserFromJson(json);
+
+  @override
+  List<Object> get props => [id, name, username, email, phone, website];
+  Map<String, dynamic> toJson() => _$PostMixin$UserToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class GetPosts$Query$PostWithPagination$Post
+    with EquatableMixin, PostMixin, PostInfoMixin {
   GetPosts$Query$PostWithPagination$Post();
 
   factory GetPosts$Query$PostWithPagination$Post.fromJson(
           Map<String, dynamic> json) =>
       _$GetPosts$Query$PostWithPagination$PostFromJson(json);
 
-  String id;
-
-  String title;
-
-  GetPosts$Query$PostWithPagination$Post$User author;
-
-  List<GetPosts$Query$PostWithPagination$Post$Comment> comments;
-
   @override
-  List<Object> get props => [id, title, author, comments];
+  List<Object> get props => [author, id, title, body, id, title, body];
   Map<String, dynamic> toJson() =>
       _$GetPosts$Query$PostWithPagination$PostToJson(this);
 }
@@ -98,11 +90,123 @@ class GetPosts$Query with EquatableMixin {
   Map<String, dynamic> toJson() => _$GetPosts$QueryToJson(this);
 }
 
+@JsonSerializable(explicitToJson: true)
+class Post$Query$Post with EquatableMixin, PostMixin {
+  Post$Query$Post();
+
+  factory Post$Query$Post.fromJson(Map<String, dynamic> json) =>
+      _$Post$Query$PostFromJson(json);
+
+  @override
+  List<Object> get props => [author, id, title, body];
+  Map<String, dynamic> toJson() => _$Post$Query$PostToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Post$Query with EquatableMixin {
+  Post$Query();
+
+  factory Post$Query.fromJson(Map<String, dynamic> json) =>
+      _$Post$QueryFromJson(json);
+
+  Post$Query$Post post;
+
+  @override
+  List<Object> get props => [post];
+  Map<String, dynamic> toJson() => _$Post$QueryToJson(this);
+}
+
 class GetPostsQuery extends GraphQLQuery<GetPosts$Query, JsonSerializable> {
   GetPostsQuery();
 
   @override
   final DocumentNode document = DocumentNode(definitions: [
+    FragmentDefinitionNode(
+        name: NameNode(value: 'User_Info'),
+        typeCondition: TypeConditionNode(
+            on: NamedTypeNode(name: NameNode(value: 'User'), isNonNull: false)),
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'id'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'name'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'username'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'email'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'phone'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'website'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null)
+        ])),
+    FragmentDefinitionNode(
+        name: NameNode(value: 'Post_Info'),
+        typeCondition: TypeConditionNode(
+            on: NamedTypeNode(name: NameNode(value: 'Post'), isNonNull: false)),
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'id'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'title'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null),
+          FieldNode(
+              name: NameNode(value: 'body'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null)
+        ])),
+    FragmentDefinitionNode(
+        name: NameNode(value: 'Post'),
+        typeCondition: TypeConditionNode(
+            on: NamedTypeNode(name: NameNode(value: 'Post'), isNonNull: false)),
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FragmentSpreadNode(
+              name: NameNode(value: 'Post_Info'), directives: []),
+          FieldNode(
+              name: NameNode(value: 'author'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FragmentSpreadNode(
+                    name: NameNode(value: 'User_Info'), directives: [])
+              ]))
+        ])),
     OperationDefinitionNode(
         type: OperationType.query,
         name: NameNode(value: 'getPosts'),
@@ -139,50 +243,8 @@ class GetPostsQuery extends GraphQLQuery<GetPosts$Query, JsonSerializable> {
                     arguments: [],
                     directives: [],
                     selectionSet: SelectionSetNode(selections: [
-                      FieldNode(
-                          name: NameNode(value: 'id'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null),
-                      FieldNode(
-                          name: NameNode(value: 'title'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null),
-                      FieldNode(
-                          name: NameNode(value: 'author'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: SelectionSetNode(selections: [
-                            FieldNode(
-                                name: NameNode(value: 'id'),
-                                alias: null,
-                                arguments: [],
-                                directives: [],
-                                selectionSet: null),
-                            FieldNode(
-                                name: NameNode(value: 'name'),
-                                alias: null,
-                                arguments: [],
-                                directives: [],
-                                selectionSet: null)
-                          ])),
-                      FieldNode(
-                          name: NameNode(value: 'comments'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: SelectionSetNode(selections: [
-                            FieldNode(
-                                name: NameNode(value: 'id'),
-                                alias: null,
-                                arguments: [],
-                                directives: [],
-                                selectionSet: null)
-                          ]))
+                      FragmentSpreadNode(
+                          name: NameNode(value: 'Post'), directives: [])
                     ]))
               ]))
         ]))
@@ -196,4 +258,65 @@ class GetPostsQuery extends GraphQLQuery<GetPosts$Query, JsonSerializable> {
   @override
   GetPosts$Query parse(Map<String, dynamic> json) =>
       GetPosts$Query.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class PostArguments extends JsonSerializable with EquatableMixin {
+  PostArguments({@required this.postId});
+
+  @override
+  factory PostArguments.fromJson(Map<String, dynamic> json) =>
+      _$PostArgumentsFromJson(json);
+
+  final String postId;
+
+  @override
+  List<Object> get props => [postId];
+  @override
+  Map<String, dynamic> toJson() => _$PostArgumentsToJson(this);
+}
+
+class PostQuery extends GraphQLQuery<Post$Query, PostArguments> {
+  PostQuery({this.variables});
+
+  @override
+  final DocumentNode document = DocumentNode(definitions: [
+    OperationDefinitionNode(
+        type: OperationType.query,
+        name: NameNode(value: 'Post'),
+        variableDefinitions: [
+          VariableDefinitionNode(
+              variable: VariableNode(name: NameNode(value: 'postId')),
+              type: NamedTypeNode(name: NameNode(value: 'ID'), isNonNull: true),
+              defaultValue: DefaultValueNode(value: null),
+              directives: [])
+        ],
+        directives: [],
+        selectionSet: SelectionSetNode(selections: [
+          FieldNode(
+              name: NameNode(value: 'post'),
+              alias: null,
+              arguments: [
+                ArgumentNode(
+                    name: NameNode(value: 'postId'),
+                    value: VariableNode(name: NameNode(value: 'postId')))
+              ],
+              directives: [],
+              selectionSet: SelectionSetNode(selections: [
+                FragmentSpreadNode(
+                    name: NameNode(value: 'Post'), directives: [])
+              ]))
+        ]))
+  ]);
+
+  @override
+  final String operationName = 'Post';
+
+  @override
+  final PostArguments variables;
+
+  @override
+  List<Object> get props => [document, operationName, variables];
+  @override
+  Post$Query parse(Map<String, dynamic> json) => Post$Query.fromJson(json);
 }
