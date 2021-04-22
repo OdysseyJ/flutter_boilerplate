@@ -1,7 +1,7 @@
 import 'package:architecture_app/data/interface/post_repository_interface.dart';
 import 'package:architecture_app/domain/model/postWithPagenation.dart';
+import 'package:architecture_app/graphql/query/posts.dart';
 import 'package:flutter/foundation.dart';
-import 'package:architecture_app/graphql/graphql_api.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class PostGraphQLRepository implements PostRepositoryInterface {
@@ -13,15 +13,21 @@ class PostGraphQLRepository implements PostRepositoryInterface {
 
   @override
   Future<PostWithPagination> getPosts() async {
-    final results = await client.query(
-      QueryOptions(
-        document: GetPostsQuery().document,
-      ),
-    );
-    if (results.hasException) {
-      throw results.exception;
-    } else {
-      return PostWithPagination.fromJson(results.data['posts']);
+    try {
+      final results = await client.query(
+        QueryOptions(
+          document: PostsQuery.document,
+        ),
+      );
+      if (results.hasException) {
+        throw results.exception;
+      } else {
+        return PostWithPagination.fromJson(results.data['posts']);
+      }
+    } catch (error) {
+      print('fail to get posts');
+      print(error);
+      throw error.exception;
     }
   }
 }

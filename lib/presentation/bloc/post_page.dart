@@ -5,17 +5,7 @@ import 'package:architecture_app/presentation/widget/list_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PostPageWithBloc extends StatefulWidget {
-  @override
-  _PostPageWithBlocState createState() => _PostPageWithBlocState();
-}
-
-class _PostPageWithBlocState extends State<PostPageWithBloc> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class PostPageWithBloc extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
