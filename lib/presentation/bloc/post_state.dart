@@ -1,4 +1,4 @@
-import 'package:architecture_app/graphql/graphql_api.dart';
+import 'package:architecture_app/domain/model/postWithPagenation.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -13,26 +13,22 @@ class PostInitial extends PostState {}
 class PostLoading extends PostState {}
 
 class PostLoaded extends PostState {
-  final GetPosts$Query$PostWithPagination posts;
-  final bool hasReachedMax;
-  PostLoaded({@required this.posts, @required this.hasReachedMax});
+  final PostWithPagination result;
+  PostLoaded({@required this.result});
 
   @override
-  List<Object> get props => [posts, hasReachedMax];
+  List<Object> get props => [result];
 
   PostLoaded copyWith({
-    GetPosts$Query$PostWithPagination posts,
-    bool hasReachedMax,
+    PostWithPagination result,
   }) {
     return PostLoaded(
-      posts: posts ?? this.posts,
-      hasReachedMax: hasReachedMax ?? this.hasReachedMax,
+      result: result ?? this.result,
     );
   }
 
   @override
-  String toString() =>
-      'PostSuccess { posts: ${posts.data.length}, hasReachedMax: $hasReachedMax }';
+  String toString() => 'PostSuccess { result: $result }';
 }
 
 class PostError extends PostState {}

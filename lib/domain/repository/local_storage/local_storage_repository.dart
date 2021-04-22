@@ -4,13 +4,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 class LocalStorageRepository implements LocalStorageRepositoryInterface {
   @override
   Future<void> clearAllData() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferences.clear();
+    final sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.clear();
   }
 
   @override
-  Future<String> getToken() {
-    // TODO: implement getToken
-    throw UnimplementedError();
+  Future<String> getToken() async {
+    return 'asdf';
   }
 }

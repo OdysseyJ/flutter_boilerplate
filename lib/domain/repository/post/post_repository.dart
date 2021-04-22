@@ -11,6 +11,7 @@ class PostGraphQLRepository implements PostRepositoryInterface {
     @required this.client,
   });
 
+  @override
   Future<PostWithPagination> getPosts() async {
     final results = await client.query(
       QueryOptions(
@@ -20,7 +21,7 @@ class PostGraphQLRepository implements PostRepositoryInterface {
     if (results.hasException) {
       throw results.exception;
     } else {
-      return GetPostsQuery().parse(results.data).posts;
+      return PostWithPagination.fromJson(results.data['posts']);
     }
   }
 }

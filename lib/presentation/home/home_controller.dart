@@ -1,11 +1,17 @@
-import 'package:architecture_app/domain/repository/post/post_state.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
+enum RouteName { GetX, Bloc, Provider }
+
+class HomeController extends GetxService {
   static HomeController get to => Get.find();
 
-  RxString helloWorld = "hello world".obs;
-  Rx<PostState> postState = PostInitial().obs;
+  RxInt currentIndex = 0.obs;
+  PageController pageController = PageController();
+
+  void changePageIndex(int index) {
+    currentIndex(index);
+  }
 
   @override
   void onInit() {

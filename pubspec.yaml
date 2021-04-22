@@ -23,16 +23,17 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^7.0.0
 
-  # Use with the CupertinoIcons class for iOS style icons.
+  # theme
   cupertino_icons: ^1.0.2
   google_fonts: ^1.1.2
 
-  # code linter
-  pedantic: ^1.11.0
-
+  # MVVM
+  flutter_bloc: ^7.0.0
+  provider: ^5.0.0
   get: ^4.1.4
+
+  # graphql
   graphql_flutter: ^4.0.1
 
   # local storage
@@ -45,6 +46,7 @@ dependencies:
   url_launcher: ^6.0.3
   flutter_native_splash: ^0.3.2
   flutter_svg: ^0.19.3
+  json_annotation: ^3.1.1
   
 
 dev_dependencies:
@@ -55,6 +57,9 @@ dev_dependencies:
   artemis: ^6.18.4
   build_runner: ^1.10.4
   json_serializable: ^3.5.0
+
+  # google code lint rule
+  pedantic: ^1.11.0
 
 flutter:
   uses-material-design: true

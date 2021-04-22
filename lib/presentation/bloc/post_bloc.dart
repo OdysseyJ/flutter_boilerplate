@@ -1,31 +1,42 @@
+import 'package:architecture_app/data/network/graphql_client.dart';
 import 'package:architecture_app/domain/repository/post/post_repository.dart';
-import 'package:flutter/foundation.dart';
 import 'package:bloc/bloc.dart';
+
+import 'package:rxdart/rxdart.dart';
 
 import 'post_event.dart';
 import 'post_state.dart';
 
 class PostBloc extends Bloc<PostEvent, PostState> {
-  final PostGraphQLRepository postGraphQLRepository;
+  final PostGraphQLRepository postGraphQLRepository =
+      PostGraphQLRepository(client: client);
 
-  PostBloc({
-    @required this.postGraphQLRepository,
-  }) : super(PostInitial());
+  PostBloc() : super(PostInitial());
+
+  @override
+  Stream<Transition<PostEvent, PostState>> transformEvents(
+    Stream<PostEvent> events,
+    TransitionFunction<PostEvent, PostState> transitionFn,
+  ) {
+    return super.transformEvents(
+      events.debounceTime(const Duration(milliseconds: 500)),
+      transitionFn,
+    );
+  }
 
   @override
   Stream<PostState> mapEventToState(event) async* {
     if (event is PostLoadEvent) {
-      yield* _mapLoadPostsToState();
+      yield* _postLoad();
     }
   }
 
-  Stream<PostState> _mapLoadPostsToState() async* {
+  Stream<PostState> _postLoad() async* {
     try {
       yield PostLoading();
-      final posts = await postGraphQLRepository.getPosts();
+      final result = await postGraphQLRepository.getPosts();
       yield PostLoaded(
-        posts: posts,
-        hasReachedMax: false,
+        result: result,
       );
     } catch (error) {
       yield PostError();

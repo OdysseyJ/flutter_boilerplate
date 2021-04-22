@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Routes {
-  static String home = "/";
-  static detail(String id) => "/detail/:id";
-  static String search = "/search";
+  static String home = '/';
+  static String detail(String id) => '/detail/:id';
+  static String search = '/search';
 
   List<GetPage> get pages => [
         GetPage(name: home, page: () => HomePage(), binding: HomeBinding()),
-        GetPage(name: detail("id"), page: () => Scaffold()),
+        GetPage(name: detail('id'), page: () => Scaffold()),
         GetPage(name: search, page: () => Scaffold())
       ];
 }
